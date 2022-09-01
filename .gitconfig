@@ -1,0 +1,7 @@
+[user]
+	name = Eike
+	email = moguls753@gmx.de
+[init]
+	defaultBranch = main
+[core]
+	autocrlf = false
