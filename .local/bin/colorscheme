@@ -1,0 +1,6 @@
+#!/bin/zsh
+
+color=$1
+cat /home/eike/.config/alacritty/base.yml /home/eike/.config/alacritty/gruvbox_${color}.yml > /home/eike/.config/alacritty/alacritty.yml
+
+source "/home/eike/.config/zsh/.zshrc"
