@@ -7,8 +7,7 @@ export PATH="$PATH:$GEM_HOME/bin"
 
 # Default programs:
 export EDITOR="nvim"
-export TERMINAL="alacritty"
-export BROWSER="chromium"
+export BROWSER="firefox"
 export READER="zathura"
 
 # ~/ Clean-up:

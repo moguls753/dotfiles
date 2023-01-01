@@ -2,85 +2,56 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  -- colorscheme
-  use { "ellisonleao/gruvbox.nvim" }
-
-  -- better and easier commenting with Comment.nvim
-  use {
-    'numToStr/Comment.nvim',
-  }
-
-  -- the lualine statusline
-  use {
-    'nvim-lualine/lualine.nvim',
-  }
-
-  -- Configurations for Nvim LSP, managed alle eingehenden completion Vorschläge folgender Plugins
-  use {
-    'hrsh7th/nvim-cmp',
-    requires = {
-      'neovim/nvim-lspconfig',
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-cmdline',
-      'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip',
-    }
-  }
-
-  -- Treesitter
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
-  }
-
-  -- nvim-autopair parenthesis
-  use {
-    "windwp/nvim-autopairs",
-  }
-
-  -- java lsp extension
-  use {
-    'mfussenegger/nvim-jdtls'
-  }
-
   -- telescope fzf finder, picker, filebrowser etc.
   use {
     'nvim-telescope/telescope.nvim', branch = '0.1.x',
     requires = {
       'nvim-lua/plenary.nvim',
       'kyazdani42/nvim-web-devicons', opt = true,
-      'nvim-telescope/telescope-ui-select.nvim',
     }
   }
 
-  -- a native telescope sorter written in c
-  use {
-    'nvim-telescope/telescope-fzf-native.nvim', run = 'make'
-  }
+  use {'nvim-telescope/telescope-fzf-native.nvim', run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' } 
 
-
-  -- hopping/highlighting when finding multiple occosions of a char
-  use {
-    'phaazon/hop.nvim',
-    branch = 'v2', -- optional but strongly recommended
+  use({
+    'rose-pine/neovim',
+    as = 'rose-pine',
     config = function()
-      -- you can configure Hop the way you like here; see :h hop-config
-      require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
+      vim.cmd('colorscheme rose-pine')
     end
-  }
+  })
 
-  -- null-ls, for me its just for google-style-formatting on java
-  use {
-    'jose-elias-alvarez/null-ls.nvim'
-  }
+  use({
+    'nvim-treesitter/nvim-treesitter', 
+    run = ':TSUpdate',
+    'nvim-treesitter/playground',
+  })
+
+  use 'mbbill/undotree'
+
+  use 'tpope/vim-fugitive'
 
   use {
-    'kyazdani42/nvim-tree.lua',
+    'VonHeikemen/lsp-zero.nvim',
     requires = {
-      'kyazdani42/nvim-web-devicons', -- optional, for file icons
-    },
-    tag = 'nightly' -- optional, updated every week. (see issue #1193)
+      -- LSP Support
+      {'neovim/nvim-lspconfig'},
+      {'williamboman/mason.nvim'},
+      {'williamboman/mason-lspconfig.nvim'},
+
+      -- Autocompletion
+      {'hrsh7th/nvim-cmp'},
+      {'hrsh7th/cmp-buffer'},
+      {'hrsh7th/cmp-path'},
+      {'saadparwaiz1/cmp_luasnip'},
+      {'hrsh7th/cmp-nvim-lsp'},
+      {'hrsh7th/cmp-nvim-lua'},
+
+      -- Snippets
+      {'L3MON4D3/LuaSnip'},
+      {'rafamadriz/friendly-snippets'},
+    }
   }
+
 end)
+

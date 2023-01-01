@@ -5,7 +5,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.local/share/zsh/plugins/zsh-z/zsh-z.plugin.zsh
 
@@ -40,16 +39,15 @@ setopt always_to_end
 setopt auto_pushd
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
-# use vim keybindings
-bindkey -v
-bindkey -M viins 'jj' vi-cmd-mode
+# use not vim keybindings
+bindkey -e
 
 bindkey "^[[3~" delete-char
+
 # CTRL-R to search through history
 # bindkey '^R' history-incremental-search-backward
 
 # aliases
-alias ssh='TERM=xterm-256color ssh' # verhindert: unknown terminal alacritty
 alias sudo='nocorrect sudo -E '
 alias ls="exa -l --color=auto --sort=type --icons"
 alias la="exa -al --color=auto --sort=type --icons"
@@ -67,20 +65,11 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 # Set it to 10ms
 export KEYTIMEOUT=20
 
-colors=$(tail -n 1 /home/eike/.config/alacritty/alacritty.yml)
 # fzf completions and keybindings for zsh
 if type fzf &> /dev/null && type rg &> /dev/null; then
-    if [[ $(tail -n 1 /home/eike/.config/alacritty/alacritty.yml) == "#light" ]]; then
-    export FZF_DEFAULT_OPTS='
-      --color fg:#3c3836,bg:#f9f5d7,hl:#b57614:,fg+:#3c3836,bg+:#f2edcb,hl+:#b57614
-      --color info:#076678,prompt:#665c54,spinner:#b57614,pointer:#076678,marker:#af3a03,header:#bdae93'
-    alias cat='bat --theme=gruvbox-light'
-  else 
-    export FZF_DEFAULT_OPTS='
-      --color fg:#ebdbb2,bg:#282828,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f
-      --color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54'
-    alias cat='bat --theme=gruvbox-dark'
-  fi
+  export FZF_DEFAULT_OPTS='
+    --color fg:#ebdbb2,bg:#282828,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f
+    --color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54'
   export FZF_DEFAULT_COMMAND='rg --files --hidden --no-follow --glob "!.git/*" --glob "!vendor/*"'
   export FZF_CTRL_T_COMMAND='rg --files --hidden --no-follow --glob "!.git/*" --glob "!vendor/*"'
   export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -88,9 +77,31 @@ fi
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 
+
+# xterm title for zsh
+autoload -Uz add-zsh-hook
+
+function xterm_title_precmd () {
+	print -Pn -- '\e]2;%n@%m %~\a'
+	[[ "$TERM" == 'screen'* ]] && print -Pn -- '\e_\005{g}%n\005{-}@\005{m}%m\005{-} \005{B}%~\005{-}\e\\'
+}
+
+function xterm_title_preexec () {
+	print -Pn -- '\e]2;%n@%m %~ %# ' && print -n -- "${(q)1}\a"
+	[[ "$TERM" == 'screen'* ]] && { print -Pn -- '\e_\005{g}%n\005{-}@\005{m}%m\005{-} \005{B}%~\005{-} %# ' && print -n -- "${(q)1}\e\\"; }
+}
+
+if [[ "$TERM" == (Eterm*|alacritty*|aterm*|gnome*|konsole*|kterm*|putty*|rxvt*|screen*|tmux*|xterm*) ]]; then
+	add-zsh-hook -Uz precmd xterm_title_precmd
+	add-zsh-hook -Uz preexec xterm_title_preexec
+fi
+
+
+
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 # source "$HOME/.rvm/scripts/rvm"
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
