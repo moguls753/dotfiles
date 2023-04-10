@@ -11,7 +11,7 @@ vim.o.timeoutlen = 300
 vim.api.nvim_set_keymap('i', 'jj', '<esc>', { noremap = true, silent = true })
 
 -- explorer
-vim.api.nvim_set_keymap('n', '<Leader>e', '<cmd>E<cr>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<Leader>e', '<cmd>Explore<cr>', { noremap = true, silent = true })
 
 -- window navigation
 vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', { noremap = true, silent = true })

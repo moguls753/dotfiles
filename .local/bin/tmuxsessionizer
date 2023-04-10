@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+if [[ $# -eq 1 ]]; then
+    selected=$1
+else
+    selected=$(find ~/SE -mindepth 2 -maxdepth 2 -type d | fzf)
+fi
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+selected_name=$(basename "$selected" | tr . _)
+tmux_running=$(pgrep tmux)
+window_number=$(tmux list-windows -a | grep $selected_name | awk  '{print $1}' | sed 's/dev//g' | sed 's/://g')
+window_exists=$(tmux list-windows -a | grep $selected_name)
+
+if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
+    tmux new-session -s "dev" -c $selected -n $selected_name
+    exit 0
+fi
+
+if [[ -z $window_exists ]]; then
+    tmux new-window -n $selected_name -c $selected
+    if [[ -z $TMUX ]] && ! [[ -z $tmux_running ]]; then
+        tmux select-window -t $window_number
+        tmux attach
+    fi
+    exit 0
+fi
+
+tmux select-window -t $window_number
+
+if [[ -z $TMUX ]] && ! [[ -z $tmux_running ]]; then
+    tmux attach
+fi

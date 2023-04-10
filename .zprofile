@@ -9,6 +9,7 @@ export PATH="$PATH:$GEM_HOME/bin"
 export EDITOR="nvim"
 export BROWSER="firefox"
 export READER="zathura"
+export TERMINAL="xterm"
 
 # ~/ Clean-up:
 export ZDOTDIR="$HOME/.config/zsh"

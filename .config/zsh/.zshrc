@@ -8,6 +8,9 @@ fi
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ~/.local/share/zsh/plugins/zsh-z/zsh-z.plugin.zsh
 
+. "$HOME/.asdf/asdf.sh"
+# append completions to fpath
+fpath=(${ASDF_DIR}/completions $fpath)
 
 # Basic auto/tab complete
 autoload -U compinit
@@ -78,7 +81,7 @@ source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 
 
-# xterm title for zsh
+# xterm title for zsh from arch wiki
 autoload -Uz add-zsh-hook
 
 function xterm_title_precmd () {
@@ -101,7 +104,4 @@ fi
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-# source "$HOME/.rvm/scripts/rvm"
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
