@@ -1,0 +1,197 @@
+(defwidget bar0 []
+(box :class "bar0"
+  (centerbox :orientation "h"
+    (workspaces0)
+    (clock)
+    (sidestuff)))
+)
+
+(defwidget bar1 []
+(box :class "bar1"
+  (centerbox :orientation "h"
+    (workspaces1)
+    (clock)
+    (sidestuff)))
+)
+
+(defwidget sidestuff []
+  (box :class "sidestuff" :orientation "h" :space-evenly false :halign "end" :spacing 0
+   (updates)
+  ;;  ;; (scratchpad-indicator)
+   (bright)
+   (audio)
+   (battery)
+   (net)
+  )
+)
+
+(deflisten workspace0
+  "scripts/workspace.sh 0")
+
+(defwidget workspaces0 []
+  (literal :content workspace0))
+
+(deflisten workspace1
+  "scripts/workspace.sh 1")
+
+(defwidget workspaces1 []
+  (literal :content workspace1))
+
+(defwidget clock []
+  (box :class "clock"
+       :orientation "h"
+       :space-evenly false
+       :halign "center"
+       date-time
+  )
+)
+
+(defwidget audio []
+  (box :class "audio"
+       :orientation "h"
+       :space-evenly false
+       :halign "end"
+       :spacing 10
+    (button
+        :class "audio-icon"
+        :onclick "scripts/volumecontrol down"
+        :onmiddleclick "scripts/volumecontrol mute"
+        :onrightclick "scripts/volumecontrol up"
+        volume-icon)
+    volume-digit
+))
+
+(defwidget bright []
+  (box :class "brightness"
+       :orientation "h"
+       :space-evenly false
+       :halign "end"
+       :spacing 10
+    (button
+        :class "brightness-icon"
+        :onclick "scripts/brightnesscontrol down"
+        :onrightclick "scripts/brightnesscontrol up"
+        brightness-icon)
+    brightness-digit
+))
+
+(defwidget updates []
+  (box
+       :class "updates"
+       :orientation "h"
+       :space-evenly false
+       :halign "end"
+       :spacing 10
+    (button
+        :class "update-icon"
+        :onclick "scripts/arch-updates.sh Refresh"
+        arch-updates-icon)
+    arch-updates-digit
+))
+
+(defwidget scratchpad-indicator []
+  (box
+       :class "${matches(scratchpad, '^\s*$')?'scratchpad-empty':'scratchpad'}"
+       :orientation "h"
+       :space-evenly false
+       :halign "end"
+       :spacing 10
+    (button
+        :class ""
+        :onclick "scripts/scratchpad-indicator.sh ShowInfo"
+        scratchpad)
+))
+
+(defwidget idleinhibit []
+  (box :class "idle"
+       :orientation "h"
+       :space-evenly false
+       :halign "end"
+       :spacing 10
+    (button
+        :class ""
+        :onclick "scripts/idleinhibit.sh toggle"
+        idle)
+))
+
+(defwidget net []
+  (box :class "net"
+       :orientation "h"
+       :space-evenly false
+       :halign "end"
+       :spacing 10
+    (button
+        :class ""
+        :onclick "scripts/network.sh ShowInfo"
+        network)
+))
+
+(defwidget battery []
+  (box :class "battery"
+       :orientation "h"
+       :space-evenly false
+       :halign "end"
+       :spacing 10
+    (button
+        :class "battery-icon"
+        :onclick "scripts/battery.py --c left-click"
+        :onmiddleclick "scripts/battery.py --c middle-click"
+        :onrightclick "scripts/battery.py --c right-click"
+        battery-icon)
+    ;; battery-digit
+    "${EWW_BATTERY["BAT0"].capacity}%"
+))
+
+(defpoll battery-icon :interval "10s"
+  "scripts/battery.py --c icon")
+(defpoll battery-digit :interval "10s"
+  "scripts/battery.py --c digit")
+
+(defpoll scratchpad :interval "1s"
+  "scripts/scratchpad-indicator.sh Update || echo null")
+
+(defpoll network :interval "1s"
+  "scripts/network.sh")
+
+(defpoll idle :interval "1s"
+  "scripts/idleinhibit.sh")
+
+(defvar arch-updates-icon "󰚰")
+(defpoll arch-updates-digit :interval "60s"
+                            :initial "0"
+  "checkupdates | wc -l")
+
+(defvar volume-icon "")
+(deflisten volume-digit :initial "100%"
+  "scripts/volumecontrol digit")
+
+(defvar brightness-icon "󰃞")
+(deflisten brightness-digit :initial "100%"
+  "scripts/brightnesscontrol digit")
+
+(defpoll date-time :interval "5s"
+  "scripts/date-time.sh")
+
+(defwindow bar0
+  :monitor 0
+  :geometry (geometry :x "0px"
+                      :y "0px"
+                      :width "100%"
+                      :height "20px"
+                      :anchor "top center")
+  :stacking "bt"
+  :exclusive true
+  :focusable false
+  (bar0))
+
+(defwindow bar1
+  :monitor 1
+  :geometry (geometry :x "0px"
+                      :y "0px"
+                      :width "100%"
+                      :height "20px"
+                      :anchor "top center")
+  :stacking "bt"
+  :exclusive true
+  :focusable false
+  (bar1))
