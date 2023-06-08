@@ -5,10 +5,10 @@ vim.g.maplocalleader = ' '
 
 -- Timings
 vim.o.timeout = true
-vim.o.timeoutlen = 300
+vim.o.timeoutlen = 200
 
 -- mapping jj to <esc>
-vim.api.nvim_set_keymap('i', 'jj', '<esc>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', 'jk', '<esc>', { noremap = true, silent = true })
 
 -- explorer
 vim.api.nvim_set_keymap('n', '<Leader>e', '<cmd>Explore<cr>', { noremap = true, silent = true })

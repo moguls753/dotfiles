@@ -75,7 +75,7 @@ if type fzf &> /dev/null && type rg &> /dev/null; then
     --color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54'
   export FZF_DEFAULT_COMMAND='rg --files --hidden --no-follow --glob "!.git/*" --glob "!vendor/*"'
   export FZF_CTRL_T_COMMAND='rg --files --hidden --no-follow --glob "!.git/*" --glob "!vendor/*"'
-  export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
+  # export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
 fi
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
@@ -99,6 +99,7 @@ if [[ "$TERM" == (Eterm*|alacritty*|aterm*|gnome*|konsole*|kterm*|putty*|rxvt*|s
 	add-zsh-hook -Uz preexec xterm_title_preexec
 fi
 
+[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.

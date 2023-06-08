@@ -18,6 +18,8 @@ return require("packer").startup(function(use)
     run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
   })
 
+  use("joshdick/onedark.vim")
+
   use({
     "rose-pine/neovim",
     as = "rose-pine",
