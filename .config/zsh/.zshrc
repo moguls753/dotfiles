@@ -13,7 +13,7 @@ source ~/.local/share/zsh/plugins/zsh-z/zsh-z.plugin.zsh
 fpath=(${ASDF_DIR}/completions $fpath)
 
 # Basic auto/tab complete
-autoload -U compinit
+autoload -Uz compinit
 zstyle ':completion:*' menu select
 zstyle ':completion:*' rehash true
 zmodload zsh/complist
