@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # kill any running instances if they exist
-eww kill
+~/dev/eww/target/release/eww daemon
 
 # start a bar for each monitor
 monitors=$(hyprctl monitors -j | jq '.[] | .id')
 # monitors=$(hyprctl monitors -j | jq '.[] | .id' | wc -l)
 
 for monitor in ${monitors}; do
-    eww open bar${monitor}
+    ~/dev/eww/target/release/eww open bar${monitor}
 done
 
 # eww open bar0

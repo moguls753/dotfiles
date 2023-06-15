@@ -2,6 +2,37 @@
   all: unset; //Unsets everything so you can style everything from scratch
 }
 
+// Menu styling fuer systray
+menu {
+  background-color: rgba(0, 0, 0, 1);
+  margin: 4px;
+  padding: 6px 6px;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.csd menu,
+.csd .menu,
+.csd .context-menu {
+  border: none;
+  border-radius: 12px;
+}
+
+menu menuitem,
+.menu menuitem,
+.context-menu
+menuitem {
+  margin: 0;
+  border-radius: 6px;
+  padding: 7px 60px;}
+
+menu separator { margin: 6px; }
+
+.csd.popup decoration {
+  border-radius: 12px;
+  box-shadow: 0 2px 2.4px -1px rgba(0, 0, 0, 0.2), 0 4px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
+}
+
 //Global Styles
 .bar1 {
   background-color: rgba(0, 0, 0, 0);
@@ -52,6 +83,10 @@
   padding: 3px 14px 3px 14px;
   color: #ebdbb2;
   font-size: 16px;
+}
+
+.systray {
+  padding-left: 30px;
 }
 
 .audio {

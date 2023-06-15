@@ -60,6 +60,7 @@ alias rs="nohup redshift -l 51.28:11.58 &"
 alias sd="shutdown now"
 alias colorscheme='. colorscheme'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias eww='~/dev/eww/target/release/eww'
 
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
