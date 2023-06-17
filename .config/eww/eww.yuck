@@ -16,13 +16,14 @@
 
 (defwidget sidestuff []
   (box :class "sidestuff" :orientation "h" :space-evenly false :halign "end" :spacing 0
+   (scratchpad-indicator)
    (updates)
-  ;;  ;; (scratchpad-indicator)
    (bright)
    (audio)
    (battery)
    (net)
    (systray :pack-direction "ltr"
+            :icon-size "19"
             :class "systray")
   )
 )

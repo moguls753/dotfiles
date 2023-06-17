@@ -24,7 +24,7 @@ menu menuitem,
 menuitem {
   margin: 0;
   border-radius: 6px;
-  padding: 7px 60px;}
+  padding: 4px 6px;}
 
 menu separator { margin: 6px; }
 
@@ -86,7 +86,13 @@ menu separator { margin: 6px; }
 }
 
 .systray {
-  padding-left: 30px;
+  image {
+    padding-left: 13px;
+  }
+}
+
+image {
+  padding-left: 0px;
 }
 
 .audio {
@@ -113,6 +119,7 @@ menu separator { margin: 6px; }
   color: #689d6a;
   font-size: 18px;
   padding-top: 2px;
+  padding-right: 0px;
 }
 
 .update-icon {
