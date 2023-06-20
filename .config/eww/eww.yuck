@@ -21,9 +21,9 @@
    (bright)
    (audio)
    (battery)
-   (net)
+   ;; (net)
    (systray :pack-direction "ltr"
-            :icon-size "19"
+            :icon-size "20"
             :class "systray")
   )
 )
@@ -141,7 +141,6 @@
         :onmiddleclick "scripts/battery.py --c middle-click"
         :onrightclick "scripts/battery.py --c right-click"
         battery-icon)
-    ;; battery-digit
     "${EWW_BATTERY["BAT0"].capacity}%"
 ))
 

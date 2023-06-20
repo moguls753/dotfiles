@@ -4,7 +4,7 @@
 
 // Menu styling fuer systray
 menu {
-  background-color: rgba(0, 0, 0, 1);
+  background-color: rgba(0, 0, 0, 0.83);
   margin: 4px;
   padding: 6px 6px;
   background-clip: border-box;
@@ -24,7 +24,12 @@ menu menuitem,
 menuitem {
   margin: 0;
   border-radius: 6px;
-  padding: 4px 6px;}
+  padding: 4px 6px;
+
+  &:hover {
+    background-color: rgba(55, 55, 55, 0.83);
+  }
+}
 
 menu separator { margin: 6px; }
 
@@ -87,7 +92,7 @@ menu separator { margin: 6px; }
 
 .systray {
   image {
-    padding-left: 13px;
+    padding-left: 6px;
   }
 }
 
@@ -96,7 +101,7 @@ image {
 }
 
 .audio {
-  padding-right: 13px;
+  padding-right: 14px;
 }
 
 .audio-icon {
@@ -106,7 +111,7 @@ image {
 }
 
 .brightness {
-  padding-right: 13px;
+  padding-right: 14px;
 }
 
 .brightness-icon {
@@ -129,7 +134,7 @@ image {
 }
 
 .updates {
-  padding-right: 13px;
+  padding-right: 14px;
 }
 
 .scratchpad {
@@ -154,7 +159,7 @@ image {
 }
 .battery {
   color: #ebdbb2;
-  padding-right: 13px;
+  padding-right: 6px;
 }
 
 /* Unfocused */
