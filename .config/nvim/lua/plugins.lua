@@ -18,15 +18,7 @@ return require("packer").startup(function(use)
     run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
   })
 
-  use("joshdick/onedark.vim")
-
-  use({
-    "rose-pine/neovim",
-    as = "rose-pine",
-    config = function()
-      vim.cmd("colorscheme rose-pine")
-    end,
-  })
+  use("folke/tokyonight.nvim")
 
   use({
     "nvim-treesitter/nvim-treesitter",
@@ -90,7 +82,7 @@ return require("packer").startup(function(use)
 
   use("onsails/lspkind.nvim")
 
-  use("numToStr/Comment.nvim")
+  use("tpope/vim-commentary")
 
   use {
     "windwp/nvim-autopairs",

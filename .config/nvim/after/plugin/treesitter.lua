@@ -22,6 +22,7 @@ require("nvim-treesitter.configs").setup({
     "typescript",
     "git_rebase",
     "vim",
+    "erb",
   },
 
   -- Install parsers synchronously (only applied to `ensure_installed`)

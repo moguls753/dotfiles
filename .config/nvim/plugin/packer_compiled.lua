@@ -74,11 +74,6 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
-  ["Comment.nvim"] = {
-    loaded = true,
-    path = "/home/eike/.local/share/nvim/site/pack/packer/start/Comment.nvim",
-    url = "https://github.com/numToStr/Comment.nvim"
-  },
   LuaSnip = {
     loaded = true,
     path = "/home/eike/.local/share/nvim/site/pack/packer/start/LuaSnip",
@@ -171,7 +166,7 @@ _G.packer_plugins = {
     url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-tmux-navigation"] = {
-    config = { "\27LJ\2\nÁ\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\16keybindings\1\0\6\tdown\n<C-j>\16last_active\n<C-\\>\tleft\n<C-h>\tnext\14<C-Space>\nright\n<C-l>\aup\n<C-k>\1\0\1\24disable_when_zoomed\2\nsetup\25nvim-tmux-navigation\frequire\0" },
+    config = { "\27LJ\2\nÁ\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\16keybindings\1\0\6\16last_active\n<C-\\>\aup\n<C-k>\tdown\n<C-j>\tnext\14<C-Space>\tleft\n<C-h>\nright\n<C-l>\1\0\1\24disable_when_zoomed\2\nsetup\25nvim-tmux-navigation\frequire\0" },
     loaded = true,
     path = "/home/eike/.local/share/nvim/site/pack/packer/start/nvim-tmux-navigation",
     url = "https://github.com/alexghergh/nvim-tmux-navigation"
@@ -185,11 +180,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/eike/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
-  },
-  ["onedark.vim"] = {
-    loaded = true,
-    path = "/home/eike/.local/share/nvim/site/pack/packer/start/onedark.vim",
-    url = "https://github.com/joshdick/onedark.vim"
   },
   ["packer.nvim"] = {
     loaded = true,
@@ -206,12 +196,6 @@ _G.packer_plugins = {
     path = "/home/eike/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
-  ["rose-pine"] = {
-    config = { "\27LJ\2\n9\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\26colorscheme rose-pine\bcmd\bvim\0" },
-    loaded = true,
-    path = "/home/eike/.local/share/nvim/site/pack/packer/start/rose-pine",
-    url = "https://github.com/rose-pine/neovim"
-  },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
     path = "/home/eike/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
@@ -222,10 +206,20 @@ _G.packer_plugins = {
     path = "/home/eike/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
+  ["tokyonight.nvim"] = {
+    loaded = true,
+    path = "/home/eike/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
+    url = "https://github.com/folke/tokyonight.nvim"
+  },
   undotree = {
     loaded = true,
     path = "/home/eike/.local/share/nvim/site/pack/packer/start/undotree",
     url = "https://github.com/mbbill/undotree"
+  },
+  ["vim-commentary"] = {
+    loaded = true,
+    path = "/home/eike/.local/share/nvim/site/pack/packer/start/vim-commentary",
+    url = "https://github.com/tpope/vim-commentary"
   },
   ["vim-fugitive"] = {
     loaded = true,
@@ -247,16 +241,12 @@ _G.packer_plugins = {
 time([[Defining packer_plugins]], false)
 -- Config for: nvim-tmux-navigation
 time([[Config for nvim-tmux-navigation]], true)
-try_loadstring("\27LJ\2\nÁ\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\16keybindings\1\0\6\tdown\n<C-j>\16last_active\n<C-\\>\tleft\n<C-h>\tnext\14<C-Space>\nright\n<C-l>\aup\n<C-k>\1\0\1\24disable_when_zoomed\2\nsetup\25nvim-tmux-navigation\frequire\0", "config", "nvim-tmux-navigation")
+try_loadstring("\27LJ\2\nÁ\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0005\3\4\0=\3\5\2B\0\2\1K\0\1\0\16keybindings\1\0\6\16last_active\n<C-\\>\aup\n<C-k>\tdown\n<C-j>\tnext\14<C-Space>\tleft\n<C-h>\nright\n<C-l>\1\0\1\24disable_when_zoomed\2\nsetup\25nvim-tmux-navigation\frequire\0", "config", "nvim-tmux-navigation")
 time([[Config for nvim-tmux-navigation]], false)
 -- Config for: nvim-autopairs
 time([[Config for nvim-autopairs]], true)
 try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
 time([[Config for nvim-autopairs]], false)
--- Config for: rose-pine
-time([[Config for rose-pine]], true)
-try_loadstring("\27LJ\2\n9\0\0\3\0\3\0\0056\0\0\0009\0\1\0'\2\2\0B\0\2\1K\0\1\0\26colorscheme rose-pine\bcmd\bvim\0", "config", "rose-pine")
-time([[Config for rose-pine]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then
