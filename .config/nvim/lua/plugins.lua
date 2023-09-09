@@ -82,7 +82,7 @@ return require("packer").startup(function(use)
 
   use("onsails/lspkind.nvim")
 
-  use("tpope/vim-commentary")
+  use("numToStr/Comment.nvim")
 
   use {
     "windwp/nvim-autopairs",
